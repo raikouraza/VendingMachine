@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="root" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="443.0" spacing="12.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vm.controller.SecondFormViewController">
+    <children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER" onMouseClicked="#closeClick" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" GridPane.columnIndex="6">
+                    <children>
+                        <Label text="X" />
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+        <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+            <VBox.margin>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </VBox.margin>
+        </ImageView>
+        <Label fx:id="namaLabel" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="hargaLabel" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+            <children>
+                <TextField fx:id="txtNominal" />
+                <Button mnemonicParsing="false" onAction="#bayarClick" style="-fx-background-color: #00ff00;" text="Bayar" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
