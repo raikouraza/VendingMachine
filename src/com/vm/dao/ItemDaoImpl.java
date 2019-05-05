@@ -5,7 +5,6 @@
  */
 package com.vm.dao;
 
-import com.vm.entity.Inventory;
 import com.vm.entity.Item;
 import com.vm.util.NewHibernateUtil;
 import java.sql.SQLException;
@@ -17,15 +16,14 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author master
+ * @author DELL
  */
 public class ItemDaoImpl implements DaoService<Item> {
 
     @Override
     public int AddData(Item object) throws SQLException {
         int result = 0;
-        Session session = NewHibernateUtil.getSessionFactory().
-                getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -43,18 +41,20 @@ public class ItemDaoImpl implements DaoService<Item> {
     @Override
     public int UpdateData(Item object) throws SQLException {
         int result = 0;
-
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Session session = NewHibernateUtil.getSessionFactory()
+                .openSession();
         Transaction transaction = session.beginTransaction();
+
         try {
             session.update(object);
             transaction.commit();
-            result = 1;
+
         } catch (Exception e) {
             transaction.rollback();
         }
         session.close();
         return result;
+
     }
 
     @Override
@@ -62,23 +62,25 @@ public class ItemDaoImpl implements DaoService<Item> {
         int result = 0;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
+
         try {
             session.delete(object);
             transaction.commit();
-            result = 1;
+
         } catch (Exception e) {
             transaction.rollback();
         }
         session.close();
         return result;
+
     }
 
     @Override
     public List<Item> getAllData() throws SQLException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Item.class).setFetchMode(
-                "inventory", FetchMode.JOIN).setFetchMode("penjualanhasitem",
-                        FetchMode.JOIN);
+        Criteria criteria = session.
+                createCriteria(Item.class).setFetchMode(
+                "PenjualanHasItem", FetchMode.JOIN);
         List<Item> items = criteria.list();
         session.close();
         return items;
@@ -86,14 +88,7 @@ public class ItemDaoImpl implements DaoService<Item> {
 
     @Override
     public Object getData() throws SQLException {
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Inventory.class).
-                setFetchMode("Inventory", FetchMode.JOIN).setFetchMode(
-                "PenjualanHasItem", FetchMode.JOIN);
-        Item item = new Item();
-        item.getIdItem();
-        session.clear();
-        return item;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

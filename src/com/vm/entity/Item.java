@@ -1,5 +1,5 @@
 package com.vm.entity;
-// Generated May 4, 2019 7:35:30 PM by Hibernate Tools 4.3.1
+// Generated May 5, 2019 5:32:06 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class Item  implements java.io.Serializable {
      private String nama;
      private int harga;
      private String gambar;
-     private Set<Inventory> inventories = new HashSet<Inventory>(0);
+     private Integer stock;
      private Set<PenjualanHasItem> penjualanHasItems = new HashSet<PenjualanHasItem>(0);
 
     public Item() {
@@ -41,12 +41,12 @@ public class Item  implements java.io.Serializable {
         this.harga = harga;
         this.gambar = gambar;
     }
-    public Item(byte jenis, String nama, int harga, String gambar, Set<Inventory> inventories, Set<PenjualanHasItem> penjualanHasItems) {
+    public Item(byte jenis, String nama, int harga, String gambar, Integer stock, Set<PenjualanHasItem> penjualanHasItems) {
        this.jenis = jenis;
        this.nama = nama;
        this.harga = harga;
        this.gambar = gambar;
-       this.inventories = inventories;
+       this.stock = stock;
        this.penjualanHasItems = penjualanHasItems;
     }
    
@@ -102,13 +102,14 @@ public class Item  implements java.io.Serializable {
         this.gambar = gambar;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="item")
-    public Set<Inventory> getInventories() {
-        return this.inventories;
+    
+    @Column(name="Stock")
+    public Integer getStock() {
+        return this.stock;
     }
     
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="item")

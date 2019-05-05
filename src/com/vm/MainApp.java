@@ -6,6 +6,7 @@
 package com.vm;
 
 import com.vm.util.NewHibernateUtil;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +28,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApp.class.getResource("view/MainMenuForm.fxml"));
+//        ResourceBundle bundle = ResourceBundle.getBundle(
+//                "com/vm/bundles/myBundle");
+//        loader.setResources(bundle);
         VBox root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

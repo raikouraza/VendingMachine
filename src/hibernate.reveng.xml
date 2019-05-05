@@ -41,8 +41,7 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="mydb"/>
-  <table-filter match-name="penjualan_has_item"/>
-  <table-filter match-name="inventory"/>
-  <table-filter match-name="item"/>
   <table-filter match-name="penjualan"/>
+  <table-filter match-name="penjualan_has_item"/>
+  <table-filter match-name="item"/>
 </hibernate-reverse-engineering>

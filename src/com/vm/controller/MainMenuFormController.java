@@ -1,8 +1,13 @@
 package com.vm.controller;
 
 import com.vm.MainApp;
+
 import com.vm.dao.ItemDaoImpl;
+import com.vm.dao.PenjualanDaoImpl;
+
 import com.vm.entity.Item;
+import com.vm.entity.Penjualan;
+import com.vm.entity.PenjualanHasItem;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -17,11 +22,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -81,6 +86,38 @@ public class MainMenuFormController implements Initializable {
     @FXML
     private Label labelimage9;
 
+    private PenjualanDaoImpl penjualanDao;
+    private ObservableList<Penjualan> penjualans;
+
+    private PenjualanHasItem pHIDao;
+    private ObservableList<PenjualanHasItem> pHIs;
+    private PenjualanHasItem phi;
+    @FXML
+    private Tab alltab;
+
+    public PenjualanHasItem getPhi() {
+        return phi;
+    }
+
+    public PenjualanHasItem getpHIDao() {
+        return pHIDao;
+    }
+
+    public ObservableList<PenjualanHasItem> getpHIs() {
+        return pHIs;
+    }
+
+    public PenjualanDaoImpl getPenjualanDao() {
+        if (penjualanDao == null) {
+            penjualanDao = new PenjualanDaoImpl();
+        }
+        return penjualanDao;
+    }
+
+    public ObservableList<Item> getItems() {
+        return items;
+    }
+
     /**
      * Initializes the controller class.
      *
@@ -90,9 +127,10 @@ public class MainMenuFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+//        this.initLanguage(rb);
         Image i1 = new Image("com/vm/image/RoyCola.png");
         image1.setImage(i1);
-        labelimage1.setText(String.valueOf(5000));
+        labelimage1.setText(String.valueOf(10000));
 
         Image i2 = new Image("com/vm/image/milo.jpg");
         image2.setImage(i2);
@@ -137,6 +175,10 @@ public class MainMenuFormController implements Initializable {
 
     }
 
+    private void initLanguage(ResourceBundle rb) {
+//        alltab.setText(rb.getString("mainform.alltab"));
+    }
+
     @FXML
     private void closeClick(MouseEvent event) {
         Platform.exit();
@@ -152,6 +194,9 @@ public class MainMenuFormController implements Initializable {
             }
 
         }
+
+        System.out.println(items);
+
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -189,7 +234,6 @@ public class MainMenuFormController implements Initializable {
 
         }
 
-//        if (secondStage == null) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -217,6 +261,10 @@ public class MainMenuFormController implements Initializable {
 //            secondStage.show();
 //        }
 
+    }
+
+    public ObservableList<Penjualan> getPenjualans() {
+        return penjualans;
     }
 
     @FXML
@@ -434,8 +482,8 @@ public class MainMenuFormController implements Initializable {
             loader.setLocation(MainApp.class.getResource(
                     "view/SecondFormView.fxml"));
             VBox pane = loader.load();
-            SecondFormViewController controller = loader.getController();
-            controller.setMenuController(this);
+//            SecondFormViewController controller = loader.getController();
+//            controller.setMenuController(this);
             Scene scene = new Scene(pane);
             secondStage = new Stage();
             secondStage.setScene(scene);
@@ -452,6 +500,37 @@ public class MainMenuFormController implements Initializable {
 
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public ItemDaoImpl getItemDaoImpl() {
+        return itemDaoImpl;
+    }
+
+    @FXML
+    private void gearClick(MouseEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(MainApp.class.getResource(
+//                    "view/adminLogin.fxml"));
+//            ResourceBundle bundle = ResourceBundle.getBundle(
+//                    "com/vm/bundles/myBundle");
+//            loader.setResources(bundle);
+//            VBox pane;
+//
+//            pane = loader.load();
+//
+//            SecondFormViewController controller = loader.getController();
+//            controller.setMenuController(this);
+//            Scene scene = new Scene(pane);
+//            secondStage = new Stage();
+//            secondStage.setScene(scene);
+//            secondStage.setTitle("Toko KPC");
+//            secondStage.initModality(Modality.APPLICATION_MODAL);
+//            secondStage.initOwner(root.getScene().getWindow());
+//        } catch (IOException ex) {
+//            Logger.getLogger(MainMenuFormController.class.getName()).
+//                    log(Level.SEVERE, null, ex);
+//        }
     }
 
 }

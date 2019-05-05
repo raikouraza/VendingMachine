@@ -23,7 +23,8 @@ public class PenjualanDaoImpl implements DaoService<Penjualan> {
     @Override
     public int AddData(Penjualan object) throws SQLException {
         int result = 0;
-        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().
+                openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -41,7 +42,8 @@ public class PenjualanDaoImpl implements DaoService<Penjualan> {
     @Override
     public int UpdateData(Penjualan object) throws SQLException {
         int result = 0;
-        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().
+                openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -58,7 +60,8 @@ public class PenjualanDaoImpl implements DaoService<Penjualan> {
     @Override
     public int DeleteData(Penjualan object) throws SQLException {
         int result = 0;
-        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().
+                openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -75,7 +78,9 @@ public class PenjualanDaoImpl implements DaoService<Penjualan> {
     @Override
     public List<Penjualan> getAllData() throws SQLException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(PenjualanHasItemDaoImpl.class).setFetchMode("PenjualanHasItem", FetchMode.JOIN);
+        Criteria criteria = session.
+                createCriteria(PenjualanHasItemDaoImpl.class).setFetchMode(
+                "PenjualanHasItem", FetchMode.JOIN);
         List<Penjualan> penjualanss = criteria.list();
         session.close();
         return penjualanss;

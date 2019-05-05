@@ -5,7 +5,6 @@
  */
 package com.vm.dao;
 
-import com.vm.entity.Inventory;
 import com.vm.entity.PenjualanHasItem;
 import com.vm.util.NewHibernateUtil;
 import java.sql.SQLException;
@@ -24,7 +23,8 @@ public class PenjualanHasItemDaoImpl implements DaoService<PenjualanHasItem> {
     @Override
     public int AddData(PenjualanHasItem object) throws SQLException {
         int result = 0;
-        Session session = NewHibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = NewHibernateUtil.getSessionFactory().
+                openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -74,7 +74,10 @@ public class PenjualanHasItemDaoImpl implements DaoService<PenjualanHasItem> {
     @Override
     public List<PenjualanHasItem> getAllData() throws SQLException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(PenjualanHasItemDaoImpl.class).setFetchMode("Item", FetchMode.JOIN).setFetchMode("Penjualan", FetchMode.JOIN);
+        Criteria criteria = session.
+                createCriteria(PenjualanHasItemDaoImpl.class).setFetchMode(
+                "Item", FetchMode.JOIN).
+                setFetchMode("Penjualan", FetchMode.JOIN);
         List<PenjualanHasItem> penjualans = criteria.list();
         session.close();
         return penjualans;
