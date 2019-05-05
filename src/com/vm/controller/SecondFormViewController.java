@@ -164,9 +164,9 @@ public class SecondFormViewController implements Initializable {
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setAlertType(Alert.AlertType.INFORMATION);
                     a.setTitle("Pemberitahuan");
-                    a.setHeaderText("Results:");
+                    a.setHeaderText("Transaksi Berhasil:");
                     a.setContentText(
-                            "Transaksi Berhasil, Kembalian : " + String.valueOf(
+                            " Kembalian : " + String.valueOf(
                                     0
                             )
                             + " lembar 50rb, " + String.valueOf(0)

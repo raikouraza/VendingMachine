@@ -86,6 +86,8 @@ public class MainMenuFormController implements Initializable {
     @FXML
     private Label labelimage9;
 
+    private Stage adminStage;
+
     private PenjualanDaoImpl penjualanDao;
     private ObservableList<Penjualan> penjualans;
 
@@ -482,8 +484,8 @@ public class MainMenuFormController implements Initializable {
             loader.setLocation(MainApp.class.getResource(
                     "view/SecondFormView.fxml"));
             VBox pane = loader.load();
-//            SecondFormViewController controller = loader.getController();
-//            controller.setMenuController(this);
+            SecondFormViewController controller = loader.getController();
+            controller.setMenuController(this);
             Scene scene = new Scene(pane);
             secondStage = new Stage();
             secondStage.setScene(scene);
@@ -508,29 +510,30 @@ public class MainMenuFormController implements Initializable {
 
     @FXML
     private void gearClick(MouseEvent event) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(MainApp.class.getResource(
-//                    "view/adminLogin.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource(
+                    "view/adminLogin.fxml"));
 //            ResourceBundle bundle = ResourceBundle.getBundle(
 //                    "com/vm/bundles/myBundle");
 //            loader.setResources(bundle);
-//            VBox pane;
-//
-//            pane = loader.load();
-//
-//            SecondFormViewController controller = loader.getController();
-//            controller.setMenuController(this);
-//            Scene scene = new Scene(pane);
-//            secondStage = new Stage();
-//            secondStage.setScene(scene);
-//            secondStage.setTitle("Toko KPC");
-//            secondStage.initModality(Modality.APPLICATION_MODAL);
-//            secondStage.initOwner(root.getScene().getWindow());
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainMenuFormController.class.getName()).
-//                    log(Level.SEVERE, null, ex);
-//        }
+            VBox pane;
+
+            pane = loader.load();
+
+            AdminLoginController controller = loader.getController();
+            controller.setMainController(this);
+            Scene scene = new Scene(pane);
+            adminStage = new Stage();
+            adminStage.setScene(scene);
+            adminStage.setTitle("Toko KPC");
+            adminStage.initModality(Modality.APPLICATION_MODAL);
+            adminStage.initOwner(root.getScene().getWindow());
+            adminStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuFormController.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
     }
 
 }
